@@ -1,117 +1,117 @@
-# Sistema Rover CAM32
+# Rover CAM32 System
 
-Un panel de control web completo y un sistema increible de backend para un robot móvil controlado por ESP32-CAM y ESP8266. El sistema cuenta con control por voz offline, detección de personas mediante YOLOv8, estacionamiento autónomo basado en códigos QR y seguimiento de objetos por color.
-
----
-
-##  Stack Tecnológico
-
-- **Backend:** Django para procesamiento de visión artificial en tiempo real con OpenCV, YOLOv8 y control de voz con modelo de IA local.
-- **Frontend:** Aplicación moderna e interactiva desarrollada por completo en **Vite + React + TypeScript** usando **Tailwind CSS** para un diseño fluido y de alto rendimiento en tiempo real.
+A complete web control panel and an amazing backend system for a mobile robot controlled by ESP32-CAM and ESP8266. The system features offline voice control, person detection using YOLOv8, autonomous QR-based parking, and color-based object tracking.
 
 ---
 
-##  Características Principales
+## Technology Stack
 
-### 1. Interfaz de Control HUD en React
-- Capa de diseño tecnológico futurista que muestra la transmisión de la cámara en vivo, diagnósticos de telemetría y registros del sistema de forma reactiva.
-- Panel de control direccional integrado y calibración de Gamepad USB en pantalla de forma nativa.
-- Superposiciones personalizadas: banner de misión completada, localizadores de objetivos y retículas de alineación.
+- **Backend:** Django for real-time computer vision processing with OpenCV, YOLOv8 and voice control with a local AI model.
+- **Frontend:** Modern and interactive application developed entirely in **Vite + React + TypeScript** using **Tailwind CSS** for a fluid and high-performance real-time design.
 
-### 2. Modos de Conducción e Inteligencia
+---
 
-*   **MANUAL:** Control total mediante botones táctiles y soporte de teclado/gamepad sobre el movimiento del robot.
-*   **AI:** Detección y segmentación de personas en tiempo real superpuesta en el video con YOLOv8.
-*   **AI - 2 :**
-    - El robot realiza un escaneo circular para registrar todos los códigos QR visibles.
-    - Elige una casita al azar entre los detectados.
-    - Gira, se alinea, avanza y se estaciona de forma totalmente autónoma en la casita seleccionada.
-    - Muestra un botón flotante de "Nueva Misión" al finalizar para reiniciar la dinámica.
+## Key Features
+
+### 1. React HUD Control Interface
+- Futuristic tech design layer showing live camera feed, telemetry diagnostics, and system logs reactively.
+- Integrated directional control panel and native on-screen USB Gamepad calibration.
+- Custom overlays: mission completed banner, target locators, and alignment crosshairs.
+
+### 2. Driving Modes and Intelligence
+
+*   **MANUAL:** Full control via touch buttons and keyboard/gamepad support over the robot's movement.
+*   **AI:** Real-time person detection and segmentation overlaid on the video using YOLOv8.
+*   **AI - 2:**
+    - The robot performs a circular scan to register all visible QR codes.
+    - Chooses a random house among the detected ones.
+    - Turns, aligns, moves forward, and parks completely autonomously in the selected house.
+    - Displays a floating "New Mission" button at the end to restart the sequence.
 *   **AUTO:**
-    - Filtro de segmentación por color HSV ajustado para reconocer y seguir una tapita de botella azul.
-    - Se alinea horizontalmente y mantiene al robot a una distancia constante.
-    - Si pierde de vista el objetivo, el robot se detiene inmediatamente por seguridad.
+    - HSV color segmentation filter adjusted to recognize and follow a blue bottle cap.
+    - Aligns horizontally and keeps the robot at a constant distance.
+    - If it loses sight of the target, the robot stops immediately for safety.
 
-### 3. Control por Voz Offline (VUI)
-- Integra el reconocedor de voz offline con modelo Vosk cargado localmente.
-- Grabador local en JS que envía audio a Django sin necesidad de conexión a internet.
-- Los comandos de voz en inglés y español.
+### 3. Offline Voice Control (VUI)
+- Integrates the offline voice recognizer with a locally loaded Vosk model.
+- Local JS recorder that sends audio to Django without requiring an internet connection.
+- Voice commands in English and Spanish.
 
-### 4. Conexión WebSocket Persistente 
-- Hilo keep-alive en segundo plano integrado en Django.
-- Envía pings de control cada 3 segundos para asegurar la salud del canal.
-- Reconexión automática instantánea ante caídas de señal, ofreciendo una latencia de control inferior a 5ms.
+### 4. Persistent WebSocket Connection
+- Background keep-alive thread integrated into Django.
+- Sends control pings every 3 seconds to ensure connection health.
+- Instant auto-reconnection upon signal drops, offering less than 5ms control latency.
 
 ---
 
-##  Arquitectura del Sistema
+## System Architecture
 
 ```mermaid
 graph TD
-    User[Cliente HUD en React] -- Voz / Comandos --> Django[Servidor Django]
-    ESP32[ESP32-CAM] -- Transmisión de Video --> Django
-    Django -- WebSocket Persistente --> ESP8266[Controlador de Motores ESP8266]
+    User[React HUD Client] -- Voice / Commands --> Django[Django Server]
+    ESP32[ESP32-CAM] -- Video Stream --> Django
+    Django -- Persistent WebSocket --> ESP8266[ESP8266 Motor Controller]
 ```
 
 ---
 
-##  Configuración e Instalación
+## Setup and Installation
 
-### Requisitos Previos
+### Prerequisites
 - Python 3.11+
-- Node.js (para levantar el servidor de desarrollo de Vite)
+- Node.js (to run the Vite development server)
 
-### 1. Configuración del Backend (Django)
-Navega a la carpeta `backend-rover`:
+### 1. Backend Setup (Django)
+Navigate to the `backend-rover` directory:
 ```bash
 cd backend-rover
 ```
 
-Crea un entorno virtual y actívalo:
+Create a virtual environment and activate it:
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-Instala las dependencias necesarias:
+Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-Asegúrate de colocar la carpeta del modelo de voz `vosk-model-en-us-0.22-lgraph` dentro del directorio `backend-rover/`.
+Make sure to place the `vosk-model-en-us-0.22-lgraph` voice model folder inside the `backend-rover/` directory.
 
-Inicia el servidor Django:
+Start the Django server:
 ```bash
 python manage.py runserver 0.0.0.0:8001
 ```
 
-### 2. Configuración del Frontend (Vite + React)
-Navega a la carpeta `frontend-rover`:
+### 2. Frontend Setup (Vite + React)
+Navigate to the `frontend-rover` directory:
 ```bash
 cd ../frontend-rover
 ```
 
-Instala las dependencias de Node:
+Install Node dependencies:
 ```bash
 npm install
 ```
 
-Arranca el servidor de desarrollo Vite:
+Start the Vite development server:
 ```bash
 npm run dev
 ```
-Y abre la ruta en tu navegador: **`http://localhost:5173/`**
+And open the URL in your browser: **`http://localhost:5173/`**
 
 ---
 
-## Configuración de Puertos e IPs
+## Port and IP Configuration
 
-- **Dirección IP del ESP8266:** Configurada por defecto en `192.168.1.99` (Puerto `81` para el canal WebSocket).
-- **Ruta de Video del ESP32-CAM:** Configurada en `http://192.168.1.171:81/stream` dentro de las vistas de Django.
-- **Códigos de Movimiento Enviados:**
-  - `F`: Avanzar (Forward)
-  - `B`: Retroceder (Backward)
-  - `L`: Girar Izquierda (Left)
-  - `R`: Girar Derecha (Right)
-  - `S`: Detenerse (Stop)
-  - `H`: Bocina/Claxon (Horn)
+- **ESP8266 IP Address:** Configured by default to `192.168.1.99` (Port `81` for the WebSocket channel).
+- **ESP32-CAM Video Stream:** Configured to `http://192.168.1.171:81/stream` inside Django's views.
+- **Sent Movement Codes:**
+  - `F`: Forward
+  - `B`: Backward
+  - `L`: Turn Left
+  - `R`: Turn Right
+  - `S`: Stop
+  - `H`: Horn
