@@ -3,6 +3,7 @@
 A complete web control panel and an amazing backend system for a mobile robot controlled by ESP32-CAM and ESP8266. The system features offline voice control, person detection using YOLOv8, autonomous QR-based parking, and color-based object tracking.
 
 ---
+<img width="400" height="450" alt="20260630_120627" src="https://github.com/user-attachments/assets/c1ae38a0-dd54-4e28-bf28-aceca9e7d872" />
 
 ## Technology Stack
 
