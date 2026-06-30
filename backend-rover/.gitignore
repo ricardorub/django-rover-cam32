@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+db.sqlite3
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Large Model Files and Folders
+yolov8n.pt
+vosk-model-en-us-0.22-lgraph/
+
+# Media and Recordings
+recordings/
+*.mp4
+*.avi
+
+# Logs
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
