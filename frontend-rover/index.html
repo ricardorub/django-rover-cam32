@@ -1,13 +1,108 @@
 <!doctype html>
-<html lang="en">
+<html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend-rover</title>
+    <title>Mission Control</title>
+    
+    <!-- Tailwind CDN with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@600;700&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#323539",
+                        "surface-container-lowest": "#0c0e12",
+                        "tertiary-fixed": "#ffdad6",
+                        "primary-fixed": "#7df4ff",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#00dbe9",
+                        "surface-bright": "#37393d",
+                        "secondary-fixed": "#f8d8ff",
+                        "surface-tint": "#00dbe9",
+                        "outline": "#849495",
+                        "error": "#ffb4ab",
+                        "secondary": "#ebb2ff",
+                        "on-primary-container": "#006970",
+                        "on-secondary-fixed": "#320047",
+                        "primary-container": "#00f0ff",
+                        "on-tertiary-fixed": "#410002",
+                        "inverse-on-surface": "#2e3134",
+                        "surface-variant": "#323539",
+                        "on-tertiary-container": "#c10014",
+                        "on-secondary-container": "#fff6fc",
+                        "on-tertiary": "#690006",
+                        "surface-container-low": "#191c1f",
+                        "surface-container-high": "#282a2e",
+                        "surface-container": "#1d2023",
+                        "on-background": "#e1e2e7",
+                        "on-primary": "#00363a",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e1e2e7",
+                        "surface-dim": "#111417",
+                        "tertiary": "#fff3f2",
+                        "secondary-container": "#b600f8",
+                        "on-surface-variant": "#b9cacb",
+                        "background": "#111417",
+                        "on-primary-fixed": "#002022",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "on-tertiary-fixed-variant": "#93000c",
+                        "on-secondary": "#520072",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "surface": "#111417",
+                        "tertiary-container": "#ffcec8",
+                        "on-primary-fixed-variant": "#004f54",
+                        "outline-variant": "#3b494b",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#ebb2ff",
+                        "primary": "#dbfcff",
+                        "on-surface": "#e1e2e7",
+                        "inverse-primary": "#006970"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-edge": "32px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Space Mono"],
+                        "headline-md": ["Space Grotesk"],
+                        "telemetry": ["JetBrains Mono"],
+                        "headline-lg": ["Space Grotesk"],
+                        "body-md": ["JetBrains Mono"],
+                        "body-lg": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "telemetry": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="bg-[#0c0e12] text-[#e1e2e7] font-body-md h-screen flex flex-col overflow-hidden selection:bg-[#00f0ff] selection:text-[#00363a]">
+    <div id="root" class="h-full w-full flex flex-col"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

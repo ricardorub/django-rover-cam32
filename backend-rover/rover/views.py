@@ -702,7 +702,7 @@ def voice_control(request):
             })
             
         # Fallback to Cerebras API for AI interpretation
-        api_key = ""
+        api_key = "csk-wmvvt3kkcktwtjhr28h2yvrd8nfrky32yy2fm8xwwrdpevey"
         if not api_key or api_key == "TU_CEREBRAS_API_KEY_AQUI":
             add_log("ERR: Cerebras API Key no configurada en views.py.")
             return JsonResponse({"status": "error", "message": "Por favor escribe tu API key de Cerebras en views.py"}, status=500)
